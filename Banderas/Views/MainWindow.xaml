@@ -1,0 +1,54 @@
+﻿<Window x:Class="Banderas.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Banderas"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="900">
+    <Window.Resources>
+        <DataTemplate x:Key="TemplateListBox">
+            <Grid>
+                <Grid Width="500">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="{Binding UrlFoto}" />
+                    </Grid.Background>
+                    <StackPanel HorizontalAlignment="Left">
+                        <TextBlock Width="auto" Height="auto" Text="{Binding PaisAbreviado}" Foreground="White" FontSize="80" FontWeight="Bold"/>
+                        <TextBlock Width="auto" Height="auto" Text="{Binding NombrePais}" Foreground="White" FontSize="50"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="North:" Foreground="White" FontWeight="Bold"/>
+                            <TextBlock Text="456,989,09090" Foreground="White" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" DataContext="{Binding Geolocalizacion}">
+                            <TextBlock Text="South:" Foreground="White" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding South}" Foreground="White" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  DataContext="{Binding Geolocalizacion}">
+                            <TextBlock Text="West:" Foreground="White" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding West}" Foreground="White" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  DataContext="{Binding Geolocalizacion}">
+                            <TextBlock Text="East:" Foreground="White" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding East}" Foreground="White" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Grid>
+                    <Grid.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.15"/>
+                    </Grid.Background>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource banderasVM}">
+        <StackPanel Margin="0 50 0 0">
+            <TextBox Height="23" TextWrapping="Wrap" Width="100" Name="txtBusqueda"/>
+            <Button Content="Filtrar" Width="100" Height="23" 
+                    Command="{Binding FiltrarBanderasCommand}" CommandParameter="{Binding Text,ElementName=txtBusqueda}"/>
+            <ListBox Width="500" Height="auto" ItemsSource="{Binding ListaBanderas}" ItemTemplate="{StaticResource TemplateListBox}">
+            </ListBox>
+        </StackPanel>
+    </Grid>
+</Window>

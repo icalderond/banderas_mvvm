@@ -1,0 +1,10 @@
+﻿<Application x:Class="Banderas.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Banderas"
+             xmlns:vm="clr-namespace:Banderas.ViewModel"
+             StartupUri="/Views/MainWindow.xaml">
+    <Application.Resources>
+        <vm:BanderasVM x:Key="banderasVM"/>
+    </Application.Resources>
+</Application>
